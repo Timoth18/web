@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Nav from "@/components/nav";
+import { motion } from "framer-motion"
 import ToolsCarouselController from "@/components/tools";
 import { tools } from "@/data/tools";
 import { useRef } from "react";
+import { projects } from "@/data/project";
 
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id);
@@ -65,7 +67,7 @@ export default function Home() {
 
         <section id="tools" className="tools-section px-6 py-20">
           <div className="max-w-8xl mx-auto">
-            <h2 className="mb-12 tools-title">Tools</h2>
+            <h2 className="mb-12 tools-title">Tech Stack</h2>
             </div>
 
               <div className="tools-carousel-wrapper">
@@ -102,24 +104,72 @@ export default function Home() {
         <ToolsCarouselController />
       </section>
 
-        <section id="projects" className="min-h-screen px-6 py-20">
+        <section
+          id="projects"
+          className="min-h-screen px-6 py-20"
+          >
           <div className="max-w-6xl mx-auto">
-          <h2>Projects</h2>
+          {/* Title */}
+          <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-bold text-black text-center mb-14"
+          >
+          Featured Projects
+          </motion.h2>
+
+          {/* Grid */}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, i) => (
+          <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.1, duration: 0.5 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.03 }}
+          className="relative group"
+          >
+          {/* Glow */}
+          <div className="absolute -inset-px rounded-3xl bg-linear-to-r from-cyan-400/40 to-purple-500/40 blur-lg opacity-0 group-hover:opacity-100 transition" />
+          {/* Glass Card */}
+          <div className="relative h-full rounded-3xl p-7 bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl flex flex-col">
+          <h3 className="text-2xl font-semibold text-black mb-3">
+          {project.title}
+          </h3>
+          <p className="text-gray-300 mb-4 leading-relaxed">
+          {project.shortDesc}
+          </p>
+           <div className="flex flex-wrap gap-2 mb-4">
+            {project.tech.map((item, idx) => (
+              <span
+                key={idx}
+                className="px-3 py-1 text-xs rounded-full bg-white/50 text-green-700 border border-white/20"
+              >
+                {item}
+              </span>
+            ))}
           </div>
-            
-            <article>
-              <h3>Student Score Dashboard</h3>
-              <p>
-                Web application for a bimbingan belajar to track student scores
-                and generate reports.
-              </p>
-              <ul>
-                <li>Designed E2E test scenarios for score input & reports</li>
-                <li>Validated data consistency between UI and database</li>
-                <li>Handled flaky behavior caused by async data loading</li>
-              </ul>
-          </article>
-        </section>
+          {/* Details */}
+          <ul className="mt-auto text-sm text-black space-y-1 mb-5">
+            {project.details.map((detail, idx) => (
+              <li key={idx}>• {detail}</li>
+            ))}
+          </ul>
+          <a
+          href={project.link}
+          className="mt-auto inline-block text-sm font-medium text-green-700 px-4 py-2 rounded-xl bg-white/50 hover:bg-white/20 transition self-start"
+          >
+          View Project →
+          </a>
+          </div>
+          </motion.div>
+          ))}
+          </div>
+          </div>
+          </section>
 
         <section id="contact" className="min-h-screen px-6 py-20">
           <div className="max-w-5xl mx-auto">

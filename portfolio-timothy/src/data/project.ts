@@ -1,4 +1,4 @@
-const projects = [
+export const projects = [
   {
     id: 1,
     title: "Student Score Dashboard",
@@ -12,6 +12,8 @@ const projects = [
       "Handled flaky behavior caused by async data loading",
     ],
     tech: ["React", "TypeScript", "TailwindCSS", "Cypress"],
+    link : 
+      "#"
   },
   {
     id: 2,
@@ -26,7 +28,7 @@ const projects = [
       "Detected and reported critical bugs early",
     ],
     tech: ["Cypress", "JavaScript", "GitHub Actions"],
+    link : 
+      "#"
   },
 ];
-
-export default projects;
