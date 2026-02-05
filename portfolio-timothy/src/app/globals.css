@@ -1,0 +1,423 @@
+@import "tailwindcss";
+
+:root {
+--color-granite-50: #f1f3f4;
+--color-granite-100: #e3e8e8;
+--color-granite-200: #c7d0d1;
+--color-granite-300: #abb9ba;
+--color-granite-400: #8fa2a3;
+--color-granite-500: #738b8c;
+--color-granite-600: #5c6f70;
+--color-granite-700: #455354;
+--color-granite-800: #2e3738;
+--color-granite-900: #171c1c;
+--color-granite-950: #101314;
+
+--color-dust-grey-50: #f2f2f3;
+--color-dust-grey-100: #e6e5e6;
+--color-dust-grey-200: #cdcace;
+--color-dust-grey-300: #b3b0b5;
+--color-dust-grey-400: #9a969c;
+--color-dust-grey-500: #817c83;
+--color-dust-grey-600: #676369;
+--color-dust-grey-700: #4d4a4f;
+--color-dust-grey-800: #343135;
+--color-dust-grey-900: #1a191a;
+--color-dust-grey-950: #121112;
+
+--color-soft-periwinkle-50: #ede5ff;
+--color-soft-periwinkle-100: #daccff;
+--color-soft-periwinkle-200: #b699ff;
+--color-soft-periwinkle-300: #9166ff;
+--color-soft-periwinkle-400: #6d33ff;
+--color-soft-periwinkle-500: #4800ff;
+--color-soft-periwinkle-600: #3a00cc;
+--color-soft-periwinkle-700: #2b0099;
+--color-soft-periwinkle-800: #1d0066;
+--color-soft-periwinkle-900: #0e0033;
+--color-soft-periwinkle-950: #0a0024;
+
+--color-chartreuse-50: #f9fee6;
+--color-chartreuse-100: #f3fdce;
+--color-chartreuse-200: #e7fb9d;
+--color-chartreuse-300: #dbfa6b;
+--color-chartreuse-400: #cff83a;
+--color-chartreuse-500: #c3f609;
+--color-chartreuse-600: #9cc507;
+--color-chartreuse-700: #759405;
+--color-chartreuse-800: #4e6204;
+--color-chartreuse-900: #273102;
+--color-chartreuse-950: #1b2201;
+
+--color-cornflower-blue-50: #e5edff;
+--color-cornflower-blue-100: #ccdaff;
+--color-cornflower-blue-200: #99b6ff;
+--color-cornflower-blue-300: #6691ff;
+--color-cornflower-blue-400: #336dff;
+--color-cornflower-blue-500: #0048ff;
+--color-cornflower-blue-600: #003acc;
+--color-cornflower-blue-700: #002b99;
+--color-cornflower-blue-800: #001d66;
+--color-cornflower-blue-900: #000e33;
+--color-cornflower-blue-950: #000a24;
+}
+
+/* ---------- Base Global Defaults ---------- */
+/* General spacing & scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body defaults */
+body {
+   background:
+      radial-gradient(
+      1000px circle at 15% 16%,
+      rgba(72, 0, 255, 0.25),
+      transparent 45%
+    ),
+      radial-gradient(
+      700px circle at 80% 70%,
+      rgba(0, 72, 255, 0.22),
+      transparent 50%
+    ),
+      radial-gradient(
+      500px circle at 30% 55%,
+      rgba(0, 255, 199, 0.20),
+      transparent 50%
+    ),
+      radial-gradient(
+      500px circle at 85% 40%,
+      rgba(251, 255, 0, 0.288),
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      var(--color-granite-50),
+      var(--color-granite-200)
+    );
+  color: #111827;           
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+/* ---------- Typography Scale ---------- */
+h1 {
+  font-size: 5.5rem; 
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 3.5rem; 
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+p {
+  font-size: 1rem;
+  color: #4b5563; 
+}
+
+/* ---------- Lists ---------- */
+ul {
+  padding-left: 1.25rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Section Alignment ---------- */
+section {
+  display: flex;
+  align-items: center;
+}
+
+/* ---------- Home section ---------- */
+.home-section {
+  display: block;
+  position: relative;
+  overflow: visible;
+  text-align: center;
+  height: 850px;
+  align-items: center;
+}
+
+.home-glass {
+  display: grid;
+  gap: 4rem;
+  position: relative;
+  padding: 4rem 3rem;
+  border-radius: 24px;
+  will-change: transform, box-shadow;
+
+  background: rgba(255, 255, 255, 0.14);
+
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+
+  border: 1px solid rgba(255, 255, 255, 0.20);
+
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+
+  max-width: min(90vw, 1100px);
+
+  transition:
+  transform 0.6s cubic-bezier(.2,.8,.2,1),
+  box-shadow 0.6s cubic-bezier(.2,.8,.2,1);
+}
+
+.home-glass:hover {
+  transform: translateY(-6px) scale(1.02);
+
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.home-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.5),
+    transparent 40%,
+    transparent 70%,
+    rgba(255,255,255,0.18)
+  );
+
+  opacity: 0.15;
+}
+
+
+.home-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  color: var(--color-granite-900);
+  text-align: center;
+}
+
+
+.home-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-inline: auto;
+  color: var(--color-granite-700);
+  text-align: center;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 1s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.25s;
+}
+
+.delay-2 {
+  animation-delay: 0.35s;
+}
+
+/*------------ About me section ----------*/
+.about-section {
+  display: block;
+  position: relative;
+  overflow: visible;
+  text-align: center;
+  height: 850px;
+}
+.about-glass h2 {
+  margin-bottom: 1.5rem;
+}
+
+.about-glass p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  margin-inline: auto;
+  color: var(--color-granite-700);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.about-section {
+  position: relative;
+  overflow: visible;
+}
+
+/* ---------- Tools section ---------- */
+.tools-section {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background : transparent;
+}
+
+.tools-title {
+  text-align: center;
+  margin-top : 10px;
+}
+
+.tools-subtitle{
+  text-align: center;
+}
+
+.tools-carousel-wrapper {
+  overflow: visible;
+  max-width: 100%;
+}
+
+.tools-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 280px;
+  gap: 1.5rem;
+
+  will-change: transform;
+}
+
+.tools-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tools-carousel::-webkit-scrollbar-thumb {
+  background: var(--color-granite-300);
+  border-radius: 4px;
+}
+
+.tool-card {
+  position: relative;
+  scroll-snap-align: start;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.18); /* ← key change */
+
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  padding: 1.5rem; 
+
+  transition:
+   transform 0.6s cubic-bezier(.2,.8,.2,1),
+  box-shadow 0.6s cubic-bezier(.2,.8,.2,1);
+}
+
+.tool-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.6),
+    transparent 50%,
+    transparent 85%,
+    rgba(255,255,255,0.25)
+  );
+
+  opacity: 0.25;
+}
+
+.tool-card:hover {
+  transform: translateY(-6px) scale(1.02);
+
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.tool-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 1rem;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(218, 204, 255, 0.45),
+      rgba(182, 153, 255, 0.25)
+    );
+
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  position: relative;
+}
+
+.tool-logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6),
+    transparent 45%,
+    transparent 65%,
+    rgba(255, 255, 255, 0.25)
+  );
+
+  opacity: 0.7;
+}
+
+.tool-logo img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 3px 6px rgba(0,0,0,0.25));
+}
+
+
+.tools-carousel {
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge */
+}
+
+.tools-carousel::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari */
+}
