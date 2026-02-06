@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Nav from "@/components/nav";
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import ToolsCarouselController from "@/components/tools";
 import { tools } from "@/data/tools";
 import { useRef } from "react";
@@ -19,30 +19,43 @@ export default function Home() {
       <Nav />
       <main className="flex flex-col">
         <section id="home" className="home-section px-6 py-20">
-          <div className="home-glass mx-auto" onClick={() => scrollToSection("about")}> 
+          <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false }}
+          whileHover={{scale:1.02}}
+          
+          className="home-glass mx-auto drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]" onClick={() => scrollToSection("about")}> 
 
           <div className="max-w-6xl mx-auto">
-            <h1 className="home-title animate-fade-up">
+            <h1 className="home-title">
               Hi, I’m Timothy Situmeang
             </h1>
 
-            <p className="home-subtitle mt-6 animate-fade-up delay-1">
+            <p className="home-subtitle mt-6">
               QA Engineer expanding into software development — making processes smoother and solutions impactful.
             </p>
 
-            <div className="mt-10 animate-fade-up delay-2">
-              <span className="inline-block text-sm tracking-wide text-(--granite-500)">
+            <div className="mt-10 ">
+              <span className="inline-block text-sm tracking-wide">
                 Scroll to explore ↓
               </span>
             </div>
           </div>
-          </div>
+          </motion.div>
         </section>
 
 
         <section id="about" className="about-section py-20 px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="about-glass" onClick={() => scrollToSection("tools")}>
+            <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: false }}
+            whileHover={{scale:1.02}}
+            className="about-glass" onClick={() => scrollToSection("tools")}>
               <h2>About Me</h2>
 
             <p>
@@ -61,11 +74,17 @@ export default function Home() {
             I’m looking for opportunities to broaden my knowledge and contribute in ways that make a meaningful impact. 
             I approach projects with curiosity, patience, and a steady focus on improvement, always seeking ways to make processes and tools more effective.
             </p>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         <section id="tools" className="tools-section px-6 py-20">
+          <motion.div 
+          className="motion-wrapper"  
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false }}>
           <div className="max-w-8xl mx-auto">
             <h2 className="mb-12 tools-title">Tech Stack</h2>
             </div>
@@ -101,6 +120,7 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </motion.div>
         <ToolsCarouselController />
       </section>
 
@@ -111,10 +131,10 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
           {/* Title */}
           <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="text-4xl md:text-5xl font-bold text-black text-center mb-14"
           >
           Featured Projects
@@ -127,8 +147,8 @@ export default function Home() {
           key={i}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.1, duration: 0.5 }}
-          viewport={{ once: true }}
+          transition={{ delay: i * 0.1, duration: 0.6 }}
+          viewport={{ once: false }}
           whileHover={{ scale: 1.03 }}
           className="relative group"
           >
@@ -146,21 +166,21 @@ export default function Home() {
             {project.tech.map((item, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 text-xs rounded-full bg-white/50 text-green-700 border border-white/20"
+                className="px-3 py-1 text-xs rounded-full bg-white/50 text-[rgba(0,0,0,1)] border border-white/20"
               >
                 {item}
               </span>
             ))}
           </div>
           {/* Details */}
-          <ul className="mt-auto text-sm text-black space-y-1 mb-5">
+          <ul className="mt-auto text-s text-[rgba(218, 204, 255, 0.9)] space-y-1 font-normal mb-5">
             {project.details.map((detail, idx) => (
               <li key={idx}>• {detail}</li>
             ))}
           </ul>
           <a
           href={project.link}
-          className="mt-auto inline-block text-sm font-medium text-green-700 px-4 py-2 rounded-xl bg-white/50 hover:bg-white/20 transition self-start"
+          className="mt-auto inline-block text-sm font-medium text-[rgb(0,0,0)] px-4 py-2 rounded-xl bg-white/50 hover:bg-white/20 transition self-start"
           >
           View Project →
           </a>
