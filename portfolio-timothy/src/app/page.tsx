@@ -2,11 +2,14 @@
 
 import Image from "next/image";
 import Nav from "@/components/nav";
-import { motion, useInView } from "framer-motion"
+import { motion, useScroll, useTransform, useSpring, useMotionValueEvent } from "framer-motion"
 import ToolsCarouselController from "@/components/tools";
 import { tools } from "@/data/tools";
 import { useRef } from "react";
 import { projects } from "@/data/project";
+import Footer from "@/components/footer";
+import { useState } from "react";
+import ContactModal from "@/components/contactModal";
 
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id);
@@ -14,35 +17,100 @@ const scrollToSection = (id: string) => {
 };
 
 export default function Home() {
+  const [open, setOpen] = useState<boolean>(false);
+
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  // Scroll tracking
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Smooth parallax Y
+  const y = useSpring(
+    useTransform(scrollYProgress, [0, 1], [50, -160]),
+    {
+      stiffness: 90,
+      damping: 22,
+    }
+  );
+
+  // Smooth opacity
+  const opacity = useSpring(
+    useTransform(scrollYProgress, [0, 0.3, 0.6, 1], [0, 1, 1, 0]),
+    {
+      stiffness: 60,
+      damping: 30,
+    }
+  );
+
   return (
     <>
       <Nav />
-      <main className="flex flex-col">
-        <section id="home" className="home-section px-6 py-20">
-          <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: false }}
-          whileHover={{scale:1.02}}
-          
-          className="home-glass mx-auto drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]" onClick={() => scrollToSection("about")}> 
+      <main className="min-h-screen flex flex-col">
+         <section
+          id="home"
+          ref={sectionRef}
+          className="home-section min-h-screen px-6 py-20"
+        >
+          <motion.div className="motion-wrapper flex flex-col h-full">
 
-          <div className="max-w-6xl mx-auto">
-            <h1 className="home-title">
-              Hi, I’m Timothy Situmeang
-            </h1>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: false, amount: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="home-glass mx-auto drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]"
+              onClick={() => scrollToSection("about")}
+            >
+              <div className="max-w-6xl mx-auto">
 
-            <p className="home-subtitle mt-6">
-              QA Engineer expanding into software development — making processes smoother and solutions impactful.
-            </p>
+                <h1 className="home-title">
+                  Hi, I’m Timothy Situmeang
+                </h1>
 
-            <div className="mt-10 ">
-              <span className="inline-block text-sm tracking-wide">
-                Scroll to explore ↓
-              </span>
-            </div>
-          </div>
+                <p className="home-subtitle mt-6">
+                  QA Engineer expanding into software development — making
+                  processes smoother and solutions impactful.
+                </p>
+
+                <div className="mt-10">
+                  <span className="inline-block text-sm tracking-wide">
+                    Scroll to explore ↓
+                  </span>
+                </div>
+
+              </div>
+            </motion.div>
+            <motion.button
+              onClick={() => setOpen(true)}
+              style={{ y, opacity }}
+              className="
+                mt-auto
+                self-center
+                mb-10
+                px-6 py-3
+                bg-cyan-500
+                text-black
+                font-medium
+                rounded-full
+                hover:bg-cyan-400
+                transition
+                shadow-md
+                will-change-transform
+                will-change-opacity
+              "
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.4 }}
+              exit={{ opacity: 0 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              Let's Connect
+            </motion.button>
           </motion.div>
         </section>
 
@@ -57,28 +125,20 @@ export default function Home() {
             whileHover={{scale:1.02}}
             className="about-glass" onClick={() => scrollToSection("tools")}>
               <h2>About Me</h2>
-
             <p>
-            I’m a QA Engineer with experience making software reliable, efficient, and user-friendly. 
-            Over the years, I’ve developed a versatile toolkit of testing frameworks, automation techniques, and debugging practices, 
-            which I use to bring clarity to complex systems. 
-            I thrive by analyzing software from multiple angles, catching issues early, and improving workflows to make testing smoother and more effective.
+            I’m a QA Engineer focused on building reliable, efficient, and user-friendly software. 
+            I use testing frameworks, automation, and debugging to catch issues early and improve workflows.
+            </p>
+            <p>
+            Recently, I’ve been expanding into software development to better understand the full lifecycle and build more robust, maintainable solutions. 
+            I’m driven by curiosity, continuous learning, and a commitment to making a meaningful impact.
             </p>
 
-            <p>
-            Lately, I’ve been expanding into software development, learning to build applications from the ground up and understand the full software lifecycle. 
-            This journey allows me to bridge testing and development, creating solutions that are not only functional but also robust and maintainable.
-            </p>
-
-            <p>
-            I’m looking for opportunities to broaden my knowledge and contribute in ways that make a meaningful impact. 
-            I approach projects with curiosity, patience, and a steady focus on improvement, always seeking ways to make processes and tools more effective.
-            </p>
             </motion.div>
           </div>
         </section>
 
-        <section id="tools" className="tools-section px-6 py-20">
+        <section id="tools" className="tools-section px-6 py-20" onClick={() => scrollToSection("projects")}>
           <motion.div 
           className="motion-wrapper"  
           initial={{ opacity: 0, y: 60 }}
@@ -122,7 +182,7 @@ export default function Home() {
           </div>
         </motion.div>
         <ToolsCarouselController />
-      </section>
+        </section>
 
         <section
           id="projects"
@@ -196,6 +256,13 @@ export default function Home() {
           <h2>Contact</h2>
           </div>
         </section>
+        
+        <Footer onOpen={() => setOpen(true)} />
+
+        <ContactModal
+        open={open}
+        onClose={() => setOpen(false)}
+      />
       </main>
     </>
   );

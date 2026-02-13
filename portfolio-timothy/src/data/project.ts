@@ -26,7 +26,6 @@ export const projects = [
       "Created reusable Cypress test scripts for multiple flows",
       "Integrated with CI/CD pipelines to run tests using GitHub Actions Virtual Machines",
       "Detected and reported critical bugs early with un-flaky tests scripts",
-      ""
     ],
     tech: ["Cypress / Cypress Cloud", "JavaScript", "GitHub Actions", "jira"],
     link : 
