@@ -1,71 +1,69 @@
-export const projects = [
+export type Project = {
+  id: number;
+  title: string;
+  client?: string;
+  category: string;
+  shortDesc: string;
+  details: string[];
+  tech: string[];
+  link?: string;
+};
+
+export const projects: Project[] = [
   {
     id: 1,
-    title: "Student Score Dashboard",
+    title: "Backoffice",
+    client: "Homprep",
+    category: "Test Automation",
     shortDesc:
-      "Created a Web application for a bimbingan belajar / Tutor to track student scores and generate reports.",
-    description:
-      "Created a Web application for a bimbingan belajar / Tutor to track student scores and generate reports. Includes student data creation and automated report generation.",
+      "Built an end-to-end Cypress suite covering multi-role backoffice workflows, alongside hands-on manual testing.",
     details: [
-      "Created tables for database using supabase",
-      "Created basic CRUD function to manage students and their appropriate classes",
-      "Created a scoring feature that allow user to input grades and export as pdf",
+      "Wrote reusable Cypress scripts shared across multiple user flows and roles",
+      "Ran the suite in CI/CD on GitHub Actions runners with Cypress Cloud reporting",
+      "Kept tests stable and non-flaky so critical bugs surfaced early",
     ],
-    tech: ["Express.js", "Javascript", "CSS", "Supabase", "Node.js", "EJS"],
-    link : 
-      "#"
+    tech: ["Cypress", "Cypress Cloud", "JavaScript", "GitHub Actions", "Jira"],
   },
   {
     id: 2,
-    title: "Backoffice - Homprep",
+    title: "E-Sourcing",
+    client: "Kalbe Farma",
+    category: "Full Test Lifecycle",
     shortDesc:
-      "Created an end to end automation test suites for Homprep's Backoffice and perform manual testing.",
-    description:
-      "Created an end to end automation test that covers multiple workflows for multiple role, making test far more efficient while also performing manual testing.",
+      "Owned the testing life cycle end to end — from turning the SRS into test cases to tracking bugs to closure.",
     details: [
-      "Created reusable Cypress test scripts for multiple flows",
-      "Integrated with CI/CD pipelines to run tests using GitHub Actions Virtual Machines",
-      "Detected and reported critical bugs early with un-flaky tests scripts",
+      "Translated business documents into test scenarios and test cases",
+      "Executed functional and edge-case tests against the scenarios",
+      "Validated backend endpoints with Postman",
+      "Worked closely with developers to report, track and retest bugs",
     ],
-    tech: ["Cypress / Cypress Cloud", "JavaScript", "GitHub Actions", "jira"],
-    link : 
-      "#"
+    tech: ["Postman", "Excel"],
   },
   {
     id: 3,
-    title: "ESourcing - Kalbe Farma",
+    title: "SmartHR",
+    client: "Kalbe Farma",
+    category: "Functional & Load Testing",
     shortDesc:
-      "Execute whole testing life cycle for ESourcing project for Kalbe Farma.",
-    description:
-      "Created test cases and test scenarios from SRS, execute tests and created bug bug reporting and tracking documents",
+      "Executed test scenarios on a tight deadline, covering functional, edge-case, API and load testing.",
     details: [
-      "Performing tests based on test cases and test scenario",
-      "Performing edge cases tests",
-      "Communicating closely with developers to track bugs",
-      "Translating business documents to test cases and test scenarios",
-      "Execute backend testing using postman"
+      "Ran load tests with JMeter to check behaviour under pressure",
+      "Executed API tests in Postman, including negative cases",
+      "Reported progress to the Project Manager in daily stand-ups",
     ],
-    tech: ["Excel", "Postman"],
-    link : 
-      "#"
+    tech: ["JMeter", "Postman", "Excel"],
   },
   {
     id: 4,
-    title: "SmartHR - Kalbe Farma",
+    title: "Student Score Dashboard",
+    category: "Development",
     shortDesc:
-      "Execute test cases and test scenarios for SmartHR project for Kalbe Farma.",
-    description:
-      "Execute test cases and test scenarios with a tight deadline, execute tests and created bug bug reporting and tracking documents",
+      "A web app for a tutoring centre (bimbingan belajar) to manage students, record scores and generate reports.",
     details: [
-      "Performing tests based on test cases and test scenario",
-      "Attending daily meeting to report project progress to Project Manager",
-      "Performing load testing and edge cases testing",
-      "Execute backend testing using postman"
+      "Designed the database schema in Supabase",
+      "Built CRUD features to manage students and their classes",
+      "Added score input with PDF report export",
     ],
-    tech: ["Excel", "Postman", "Jmeter"],
-    link : 
-      "#"
+    tech: ["Node.js", "Express.js", "EJS", "Supabase", "JavaScript", "CSS"],
   },
-
-
 ];
