@@ -11,6 +11,20 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: 5,
+    title: "AWS → TencentDB Migration",
+    client: "XL",
+    category: "API Test Automation",
+    shortDesc:
+      "Verified a database migration from AWS to TencentDB with an automated, sequenced Postman API test suite.",
+    details: [
+      "Built automated Postman collections that run in sequence to cover every endpoint end to end",
+      "Chained requests and assertions to confirm data and behaviour stayed consistent after the migration",
+      "Prepared ACK documents and test reports for sign-off",
+    ],
+    tech: ["Postman", "API Testing", "AWS", "TencentDB"],
+  },
+  {
     id: 1,
     title: "Backoffice",
     client: "Homprep",

@@ -176,7 +176,7 @@ export default function Home() {
                   key={project.id}
                   {...reveal}
                   transition={{ ...reveal.transition, delay: (i % 2) * 0.1 }}
-                  className="group relative"
+                  className={`group relative ${i === 0 && projects.length % 2 === 1 ? "md:col-span-2" : ""}`}
                 >
                   <div
                     aria-hidden
