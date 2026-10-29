@@ -28,6 +28,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid input" }, { status: 400 });
     }
 
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error("Contact error: EMAIL_USER / EMAIL_PASS are not set");
+      return NextResponse.json({ error: "Email is not configured" }, { status: 500 });
+    }
+
     // Mail transporter
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -56,6 +61,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Contact error:", error);
+    if ((error as { code?: string }).code === "EAUTH") {
+      console.error(
+        "Gmail rejected the login. EMAIL_PASS must be a current Google App Password " +
+          "(myaccount.google.com/apppasswords), not your normal password."
+      );
+    }
 
     return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
   }

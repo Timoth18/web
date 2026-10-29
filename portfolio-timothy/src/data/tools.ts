@@ -5,6 +5,16 @@ export const tools = [
     logo: "/logos/cypress.svg",
   },
   {
+    name: "Playwright",
+    desc: "Cross-browser E2E automation & reliable selectors",
+    logo: "/logos/playwright.svg",
+  },
+  {
+    name: "Claude Code",
+    desc: "AI-assisted test writing, debugging & refactoring",
+    logo: "/logos/claude.svg",
+  },
+  {
     name: "JMeter",
     desc: "Load & performance testing",
     logo: "/logos/jmeter.svg",
